@@ -3,330 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPO Cockpit</title>
+<title>SPOA Cockpit</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
-  :root {
-    --bg: #0a0a0a; --surface: #111; --surface2: #181818;
-    --border: #1e1e1e; --text: #eee; --text2: #666; --accent: #fff;
-    --green: #22c55e; --yellow: #eab308; --red: #ef4444; --blue: #3b82f6;
+  body { font-family:'Inter',sans-serif; background:transparent; color:#eee; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:4px; }
+  
+  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; width:100%; max-width:900px; }
+  
+  .ilot {
+    background:#111; border:1px solid #1e1e1e; border-radius:10px; padding:12px 10px;
+    text-align:center; position:relative; overflow:hidden;
+    transition:transform 0.2s ease, border-color 0.2s ease;
   }
-  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding:20px; }
-  .container { max-width:1100px; margin:0 auto; }
-
-  /* ── Header ── */
-  .header { display:flex; justify-content:space-between; align-items:center; padding:12px 0; margin-bottom:24px; border-bottom:1px solid var(--border); }
-  .header h1 { font-size:18px; font-weight:700; letter-spacing:-0.3px; }
-  .header h1 span { color:var(--text2); font-weight:400; }
-  .header .meta { font-size:11px; color:var(--text2); text-align:right; }
-  .header .meta .day { font-size:13px; color:var(--text); font-weight:500; }
-
-  /* ── Section titles ── */
-  .section-title { font-size:11px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px; }
-
-  /* ── 1. Objectif ── */
-  .objectif { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; display:flex; align-items:center; gap:24px; }
-  .objectif .left { flex-shrink:0; }
-  .objectif .left .big { font-size:36px; font-weight:800; letter-spacing:-1px; }
-  .objectif .left .big .done { color:var(--green); }
-  .objectif .left .big .total { color:var(--text2); }
-  .objectif .left .label { font-size:11px; color:var(--text2); text-transform:uppercase; letter-spacing:1px; margin-top:2px; }
-  .objectif .right { flex:1; }
-  .objectif .right .title { font-size:14px; font-weight:600; margin-bottom:6px; }
-  .objectif .right .sub { font-size:12px; color:var(--text2); margin-bottom:10px; }
-  .objectif .bar { height:4px; background:var(--surface2); border-radius:2px; overflow:hidden; }
-  .objectif .bar .fill { height:100%; border-radius:2px; background:var(--green); transition:width 0.8s ease; }
-  .objectif .bar .pct { font-size:10px; color:var(--text2); margin-top:4px; }
-
-  /* ── 2. Road to 2 DM ── */
-  .timeline { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
-  .timeline-grid { display:flex; gap:0; position:relative; padding-top:8px; }
-  .timeline-grid::before { content:''; position:absolute; top:28px; left:0; right:0; height:1px; background:var(--border); }
-  .tl-day { flex:1; text-align:center; position:relative; padding-top:16px; }
-  .tl-day .dot { width:8px; height:8px; border-radius:50%; background:var(--surface2); margin:0 auto 6px; position:relative; z-index:1; }
-  .tl-day .dot.active { background:var(--accent); }
-  .tl-day .dot.today { background:var(--blue); box-shadow:0 0 0 3px rgba(59,130,246,0.2); }
-  .tl-day .num { font-size:10px; color:var(--text2); }
-  .tl-day .label { font-size:8px; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }
-  .tl-day .count { font-size:10px; font-weight:600; color:var(--text); margin-top:4px; }
-  .tl-day .count .over { color:var(--red); }
-  .tl-day .count .ok { color:var(--green); }
-
-  /* ── 3. Actions aujourd'hui ── */
-  .actions { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
-  .actions-empty { text-align:center; padding:24px; color:var(--text2); font-size:13px; }
-  .actions-empty .icon { font-size:24px; margin-bottom:8px; }
-  .action-item { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--border); }
-  .action-item:last-child { border-bottom:none; }
-  .action-item .check { width:16px; height:16px; border:1.5px solid var(--text2); border-radius:3px; flex-shrink:0; }
-  .action-item .info { flex:1; }
-  .action-item .info .company { font-size:13px; font-weight:600; }
-  .action-item .info .task { font-size:11px; color:var(--text2); margin-top:1px; }
-  .action-item .tag { font-size:9px; padding:2px 6px; border-radius:3px; text-transform:uppercase; letter-spacing:0.5px; flex-shrink:0; }
-  .tag.contact { background:#1a1a2e; color:var(--blue); }
-  .tag.relance { background:#1e1a0e; color:var(--yellow); }
-  .tag.retard { background:#1e0e0e; color:var(--red); }
-
-  /* ── 4. Veille ── */
-  .veille { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
-  .veille-item { display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
-  .veille-item:last-child { border-bottom:none; }
-  .veille-item .source { width:20px; flex-shrink:0; font-size:16px; }
-  .veille-item .content { flex:1; }
-  .veille-item .content .company { font-size:13px; font-weight:600; }
-  .veille-item .content .title { font-size:12px; color:var(--text); margin-top:1px; }
-  .veille-item .content .summary { font-size:11px; color:var(--text2); margin-top:3px; line-height:1.4; }
-  .veille-item .content .meta { font-size:10px; color:var(--text2); margin-top:4px; display:flex; gap:8px; flex-wrap:wrap; }
-  .veille-item .content .meta a { color:var(--blue); text-decoration:none; }
-  .veille-item .content .meta a:hover { text-decoration:underline; }
-  .veille-item .status { font-size:9px; padding:2px 6px; border-radius:3px; flex-shrink:0; align-self:flex-start; }
-  .status.exploite { background:#0e1e0e; color:var(--green); }
-  .status.nouveau { background:#1e1a0e; color:var(--yellow); }
-
-  /* ── 5. Pipeline ── */
-  .pipeline { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
-  .pipe-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
-  .pipe-stage { text-align:center; padding:12px; background:var(--surface2); border-radius:6px; }
-  .pipe-stage .lbl { font-size:9px; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; }
-  .pipe-stage .cnt { font-size:22px; font-weight:800; margin:4px 0; }
-  .pipe-stage .sub { font-size:9px; color:var(--text2); }
-
-  /* ── Footer ── */
-  .footer { text-align:center; padding:16px 0; border-top:1px solid var(--border); font-size:10px; color:var(--text2); }
-
-  @media (max-width:768px) {
-    .objectif { flex-direction:column; gap:12px; }
-    .pipe-grid { grid-template-columns:repeat(2,1fr); }
-    .timeline-grid { overflow-x:auto; }
-  }
+  .ilot:hover { transform:translateY(-1px); border-color:#333; }
+  
+  .ilot .icon { font-size:16px; margin-bottom:4px; }
+  .ilot .label { font-size:8px; color:#666; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+  .ilot .value { font-size:22px; font-weight:800; letter-spacing:-0.5px; }
+  .ilot .sub { font-size:9px; color:#555; margin-top:2px; }
+  
+  /* Barre de progression pour l'objectif */
+  .ilot .bar { height:3px; background:#181818; border-radius:2px; margin-top:6px; overflow:hidden; }
+  .ilot .bar .fill { height:100%; border-radius:2px; background:#22c55e; width:0%; transition:width 1.5s cubic-bezier(0.4,0,0.2,1); }
+  
+  /* Animations */
+  .ilot .value.anim { animation: countUp 0.8s ease-out; }
+  @keyframes countUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+  
+  /* Pulsation douce pour les chiffres */
+  .ilot .value.pulse { animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+  
+  @media (max-width:500px) { .grid { grid-template-columns:repeat(2,1fr); } }
 </style>
 </head>
 <body>
-<div class="container">
-
-  <!-- Header -->
-  <div class="header">
-    <h1>🎯 SPO <span>Cockpit</span></h1>
-    <div class="meta">
-      <div class="day" id="dayName"></div>
-      <div id="todayDate"></div>
-    </div>
+<div class="grid">
+  <div class="ilot" id="ilot1">
+    <div class="icon">🎯</div>
+    <div class="label">Objectif</div>
+    <div class="value anim" id="val1">0</div>
+    <div class="sub">/ 2 Discovery Meetings</div>
+    <div class="bar"><div class="fill" id="bar1"></div></div>
   </div>
-
-  <!-- 1. Objectif -->
-  <div class="objectif">
-    <div class="left">
-      <div class="big"><span class="done" id="rdvDone">0</span><span class="total">/2</span></div>
-      <div class="label">Discovery Meetings</div>
-    </div>
-    <div class="right">
-      <div class="title">🎯 Objectif de la mission</div>
-      <div class="sub">2 Discovery Meetings en 15 jours · Brief Orel</div>
-      <div class="bar"><div class="fill" id="progressBar" style="width:0%"></div></div>
-      <div class="pct" id="progressPct">0% atteint</div>
-    </div>
+  <div class="ilot" id="ilot2">
+    <div class="icon">⚡</div>
+    <div class="label">Aujourd'hui</div>
+    <div class="value anim" id="val2">0</div>
+    <div class="sub">actions à faire</div>
   </div>
-
-  <!-- 2. Road to 2 DM -->
-  <div class="timeline">
-    <div class="section-title">📅 Road to 2 Discovery Meetings</div>
-    <div class="timeline-grid" id="timelineGrid">
-      <!-- Generated by JS -->
-    </div>
+  <div class="ilot" id="ilot3">
+    <div class="icon">📰</div>
+    <div class="label">Veille</div>
+    <div class="value anim" id="val3">0</div>
+    <div class="sub">nouvelles opportunités</div>
   </div>
-
-  <!-- 3. Actions aujourd'hui -->
-  <div class="actions">
-    <div class="section-title">⚡ Mes actions aujourd'hui</div>
-    <div id="actionsList">
-      <div class="actions-empty">
-        <div class="icon">✅</div>
-        <div>Aucune action prévue aujourd'hui</div>
-      </div>
-    </div>
+  <div class="ilot" id="ilot4">
+    <div class="icon">📊</div>
+    <div class="label">Pipeline</div>
+    <div class="value anim" id="val4">0</div>
+    <div class="sub">cibles en cours</div>
   </div>
-
-  <!-- 4. Veille -->
-  <div class="veille">
-    <div class="section-title">📰 Veille — Nouvelles opportunités</div>
-    <div id="veilleList">
-      <div class="actions-empty">
-        <div class="icon">📡</div>
-        <div>Aucune actualité détectée</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5. Pipeline -->
-  <div class="pipeline">
-    <div class="section-title">📊 Pipeline</div>
-    <div class="pipe-grid" id="pipelineGrid">
-      <div class="pipe-stage"><div class="lbl">À qualifier</div><div class="cnt">0</div><div class="sub">cibles</div></div>
-      <div class="pipe-stage"><div class="lbl">Prêt à contacter</div><div class="cnt">0</div><div class="sub">cibles</div></div>
-      <div class="pipe-stage"><div class="lbl">1er contact</div><div class="cnt">0</div><div class="sub">envoyé</div></div>
-      <div class="pipe-stage"><div class="lbl">Relance 1</div><div class="cnt">0</div><div class="sub">cibles</div></div>
-      <div class="pipe-stage"><div class="lbl">Relance 2</div><div class="cnt">0</div><div class="sub">cibles</div></div>
-      <div class="pipe-stage"><div class="lbl">Réponse</div><div class="cnt">0</div><div class="sub">reçue</div></div>
-      <div class="pipe-stage"><div class="lbl">Discovery</div><div class="cnt">0</div><div class="sub">meeting</div></div>
-      <div class="pipe-stage"><div class="lbl">Perdu</div><div class="cnt">0</div><div class="sub">cibles</div></div>
-    </div>
-  </div>
-
-  <div class="footer">SPO Cockpit · Données live depuis Notion · Mis à jour en continu</div>
-
 </div>
 
 <script>
-// ── Données fictives pour test ──
-const MOCK_DATA = {
-  rdvDone: 1,
-  prospects: [
-    { company: 'TotalEnergies', task: 'Qualification décideur', tag: 'contact', date: 'J2' },
-    { company: 'Saint-Gobain', task: 'Envoi email personnalisé', tag: 'contact', date: 'J4' },
-    { company: 'Vinci', task: 'Relance N+1', tag: 'relance', date: 'J8' },
-    { company: 'Danone', task: 'Relance N+2 (en retard)', tag: 'retard', date: 'J11' },
-    { company: 'Schneider Electric', task: 'Préparation discovery meeting', tag: 'contact', date: 'J12' },
-  ],
-  veille: [
-    { source: '🏭', company: 'TotalEnergies', title: 'TotalEnergies lance un plan d\'investissement de 5 Md€ dans les énergies bas-carbone', summary: 'Le groupe annonce une accélération de sa stratégie de diversification avec un focus sur le solaire et l\'éolien offshore.', date: '03/07/2026', sourceName: 'Les Échos', link: 'https://www.lesechos.fr', status: 'nouveau' },
-    { source: '🏗️', company: 'Vinci', title: 'Vinci remporte le contrat de construction du nouveau quartier d\'affaires de Lyon', summary: 'Un projet d\'envergure estimé à 1,2 Md€ qui repositionne le groupe sur le marché des smart cities.', date: '02/07/2026', sourceName: 'L\'Usine Nouvelle', link: 'https://www.usinenouvelle.com', status: 'nouveau' },
-    { source: '🍽️', company: 'Danone', title: 'Danone lance une campagne mondiale sur la régénération des sols', summary: 'La marque veut associer son image à l\'agriculture régénérative avec une campagne cross-média.', date: '01/07/2026', sourceName: 'BFM Business', link: 'https://www.bfmtv.com', status: 'exploite' },
-    { source: '⚡', company: 'Schneider Electric', title: 'Schneider Electric nomme un nouveau Directeur Marketing Global', summary: 'Arrivée d\'un ancien de Google pour piloter la transformation digitale de la marque.', date: '30/06/2026', sourceName: 'Communiqué officiel', link: 'https://www.se.com', status: 'nouveau' },
-  ],
-  pipeline: {
-    aQualifier: 5, pretAContacter: 4, premierContact: 3,
-    relance1: 2, relance2: 1, reponse: 1, discovery: 1, perdu: 1
-  }
+// ── Données fictives animées ──
+const data = {
+  objectif: { current: 0, target: 1 },
+  actions: { current: 0, target: 3 },
+  veille: { current: 0, target: 4 },
+  pipeline: { current: 0, target: 12 },
 };
 
-// ── Date ──
-const days = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
-const months = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-const now = new Date();
-document.getElementById('dayName').textContent = days[now.getDay()];
-document.getElementById('todayDate').textContent = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
-
-// ── 1. Objectif ──
-document.getElementById('rdvDone').textContent = MOCK_DATA.rdvDone;
-const pct = (MOCK_DATA.rdvDone / 2) * 100;
-document.getElementById('progressBar').style.width = pct + '%';
-document.getElementById('progressPct').textContent = pct + '% atteint';
-
-// ── 2. Timeline ──
-const phases = [
-  { label: 'J1', name: 'Lancement' },
-  { label: 'J2', name: 'ID décideurs' },
-  { label: 'J3', name: 'ID décideurs' },
-  { label: 'J4', name: 'Envoi emails' },
-  { label: 'J5', name: 'Envoi emails' },
-  { label: 'J6', name: 'Envoi emails' },
-  { label: 'J7', name: 'Envoi emails' },
-  { label: 'J8', name: 'Relance' },
-  { label: 'J9', name: 'Relance' },
-  { label: 'J10', name: 'Relance' },
-  { label: 'J11', name: 'Relance J+14' },
-  { label: 'J12', name: 'Relance J+14' },
-  { label: 'J13', name: 'Relance J+14' },
-  { label: 'J14', name: 'Bilan' },
-  { label: 'J15', name: 'Objectif' },
-];
-
-const grid = document.getElementById('timelineGrid');
-const missionStart = new Date(2026, 6, 4);
-const dayDiff = Math.floor((now - missionStart) / (1000*60*60*24));
-const currentDay = Math.min(Math.max(dayDiff + 1, 1), 15);
-
-phases.forEach((p, i) => {
-  const day = document.createElement('div');
-  day.className = 'tl-day';
-  const dot = document.createElement('div');
-  dot.className = 'dot' + (i+1 <= currentDay ? ' active' : '') + (i+1 === currentDay ? ' today' : '');
-  day.appendChild(dot);
-  const num = document.createElement('div');
-  num.className = 'num';
-  num.textContent = p.label;
-  day.appendChild(num);
-  const label = document.createElement('div');
-  label.className = 'label';
-  label.textContent = p.name;
-  day.appendChild(label);
-  const count = document.createElement('div');
-  count.className = 'count';
-  // Count prospects for this day
-  const dayProspects = MOCK_DATA.prospects.filter(pr => pr.date === p.label);
-  if (dayProspects.length > 0) {
-    count.innerHTML = dayProspects.map(pr => pr.company).join('<br>');
-    count.style.fontSize = '8px';
-    count.style.lineHeight = '1.3';
-    count.style.color = '#aaa';
-  } else {
-    count.textContent = '';
+function animateValue(el, start, end, duration) {
+  const range = end - start;
+  const startTime = performance.now();
+  function step(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(start + range * eased);
+    el.textContent = current;
+    if (progress < 1) requestAnimationFrame(step);
   }
-  day.appendChild(count);
-  grid.appendChild(day);
-});
+  requestAnimationFrame(step);
+}
 
-// ── 3. Actions aujourd'hui ──
-const actionsList = document.getElementById('actionsList');
-actionsList.innerHTML = '';
-MOCK_DATA.prospects.forEach(pr => {
-  const item = document.createElement('div');
-  item.className = 'action-item';
-  item.innerHTML = `
-    <div class="check"></div>
-    <div class="info">
-      <div class="company">${pr.company}</div>
-      <div class="task">${pr.task}</div>
-    </div>
-    <div class="tag ${pr.tag}">${pr.tag === 'contact' ? 'À faire' : pr.tag === 'relance' ? 'Relance' : 'En retard'}</div>
-  `;
-  actionsList.appendChild(item);
-});
+// Animer la barre de progression
+function animateBar(el, pct) {
+  setTimeout(() => { el.style.width = pct + '%'; }, 300);
+}
 
-// ── 4. Veille ──
-const veilleList = document.getElementById('veilleList');
-veilleList.innerHTML = '';
-MOCK_DATA.veille.forEach(v => {
-  const item = document.createElement('div');
-  item.className = 'veille-item';
-  item.innerHTML = `
-    <div class="source">${v.source}</div>
-    <div class="content">
-      <div class="company">${v.company}</div>
-      <div class="title">${v.title}</div>
-      <div class="summary">${v.summary}</div>
-      <div class="meta">
-        <span>📅 ${v.date}</span>
-        <span>🏷️ ${v.sourceName}</span>
-        <a href="${v.link}" target="_blank">🔗 Lire l'article</a>
-      </div>
-    </div>
-    <div class="status ${v.status}">${v.status === 'nouveau' ? 'Nouveau' : 'Exploité'}</div>
-  `;
-  veilleList.appendChild(item);
-});
-
-// ── 5. Pipeline ──
-const p = MOCK_DATA.pipeline;
-const stages = [
-  { lbl: 'À qualifier', cnt: p.aQualifier, sub: 'cibles' },
-  { lbl: 'Prêt à contacter', cnt: p.pretAContacter, sub: 'cibles' },
-  { lbl: '1er contact', cnt: p.premierContact, sub: 'envoyé' },
-  { lbl: 'Relance 1', cnt: p.relance1, sub: 'cibles' },
-  { lbl: 'Relance 2', cnt: p.relance2, sub: 'cibles' },
-  { lbl: 'Réponse', cnt: p.reponse, sub: 'reçue' },
-  { lbl: 'Discovery', cnt: p.discovery, sub: 'meeting' },
-  { lbl: 'Perdu', cnt: p.perdu, sub: 'cibles' },
-];
-const pipeGrid = document.getElementById('pipelineGrid');
-pipeGrid.innerHTML = '';
-stages.forEach(s => {
-  const stage = document.createElement('div');
-  stage.className = 'pipe-stage';
-  stage.innerHTML = `<div class="lbl">${s.lbl}</div><div class="cnt">${s.cnt}</div><div class="sub">${s.sub}</div>`;
-  pipeGrid.appendChild(stage);
-});
+// Lancer les animations au chargement
+setTimeout(() => {
+  animateValue(document.getElementById('val1'), data.objectif.current, data.objectif.target, 1200);
+  animateValue(document.getElementById('val2'), data.actions.current, data.actions.target, 1000);
+  animateValue(document.getElementById('val3'), data.veille.current, data.veille.target, 900);
+  animateValue(document.getElementById('val4'), data.pipeline.current, data.pipeline.target, 1100);
+  animateBar(document.getElementById('bar1'), (data.objectif.target / 2) * 100);
+}, 200);
 </script>
 </body>
 </html>
