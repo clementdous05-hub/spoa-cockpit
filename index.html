@@ -12,7 +12,7 @@
     --border: #1e1e1e; --text: #eee; --text2: #666; --accent: #fff;
     --green: #22c55e; --yellow: #eab308; --red: #ef4444; --blue: #3b82f6;
   }
-  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding:20px; }
+  body { font-family:'Inter',sans-serif; background:transparent; color:var(--text); min-height:100vh; padding:20px; }
   .container { max-width:1100px; margin:0 auto; }
 
   /* ── Notion links ── */
@@ -34,7 +34,7 @@
   .section-title { font-size:11px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px; }
 
   /* ── 1. Objectif ── */
-  .objectif { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; display:flex; align-items:center; gap:24px; }
+  .objectif { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; display:flex; align-items:center; gap:24px; }
   .objectif .left { flex-shrink:0; }
   .objectif .left .big { font-size:36px; font-weight:800; letter-spacing:-1px; }
   .objectif .left .big .done { color:var(--green); }
@@ -48,7 +48,7 @@
   .objectif .bar .pct { font-size:10px; color:var(--text2); margin-top:4px; }
 
   /* ── 2. Road to 2 DM ── */
-  .timeline { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
+  .timeline { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
   .timeline-grid { display:flex; gap:0; position:relative; padding-top:8px; }
   .timeline-grid::before { content:''; position:absolute; top:28px; left:0; right:0; height:1px; background:var(--border); }
   .tl-day { flex:1; text-align:center; position:relative; padding-top:16px; }
@@ -62,7 +62,7 @@
   .tl-day .count .ok { color:var(--green); }
 
   /* ── 3. Actions aujourd'hui ── */
-  .actions { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
+  .actions { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
   .actions-empty { text-align:center; padding:24px; color:var(--text2); font-size:13px; }
   .actions-empty .icon { font-size:24px; margin-bottom:8px; }
   .action-item { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--border); }
@@ -77,7 +77,7 @@
   .tag.retard { background:#1e0e0e; color:var(--red); }
 
   /* ── 4. Veille ── */
-  .veille { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
+  .veille { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
   .veille-item { display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
   .veille-item:last-child { border-bottom:none; }
   .veille-item .source { width:20px; flex-shrink:0; font-size:16px; }
@@ -93,7 +93,7 @@
   .status.nouveau { background:#1e1a0e; color:var(--yellow); }
 
   /* ── 5. Pipeline ── */
-  .pipeline { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
+  .pipeline { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
   .pipe-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
   .pipe-stage { text-align:center; padding:12px; background:var(--surface2); border-radius:6px; }
   .pipe-stage .lbl { font-size:9px; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; }
