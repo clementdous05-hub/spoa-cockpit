@@ -5,104 +5,185 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SPOA Cockpit</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Inter',sans-serif; background:transparent; color:#eee; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:4px; }
-  
-  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; width:100%; max-width:900px; }
-  
-  .ilot {
-    background:#111; border:1px solid #1e1e1e; border-radius:10px; padding:12px 10px;
-    text-align:center; position:relative; overflow:hidden;
-    transition:transform 0.2s ease, border-color 0.2s ease;
+  body {
+    font-family:'Inter',sans-serif; background:transparent; color:#fff;
+    min-height:100vh; display:flex; align-items:center; justify-content:center; padding:6px;
   }
-  .ilot:hover { transform:translateY(-1px); border-color:#333; }
-  
-  .ilot .icon { font-size:16px; margin-bottom:4px; }
-  .ilot .label { font-size:8px; color:#666; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
-  .ilot .value { font-size:22px; font-weight:800; letter-spacing:-0.5px; }
-  .ilot .sub { font-size:9px; color:#555; margin-top:2px; }
-  
-  /* Barre de progression pour l'objectif */
-  .ilot .bar { height:3px; background:#181818; border-radius:2px; margin-top:6px; overflow:hidden; }
-  .ilot .bar .fill { height:100%; border-radius:2px; background:#22c55e; width:0%; transition:width 1.5s cubic-bezier(0.4,0,0.2,1); }
-  
-  /* Animations */
-  .ilot .value.anim { animation: countUp 0.8s ease-out; }
-  @keyframes countUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
-  
-  /* Pulsation douce pour les chiffres */
-  .ilot .value.pulse { animation: pulse 2s ease-in-out infinite; }
-  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
-  
-  @media (max-width:500px) { .grid { grid-template-columns:repeat(2,1fr); } }
+  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; width:100%; max-width:960px; }
+
+  /* ── Carte ── */
+  .card {
+    background:#0d0d0d; border:1px solid #1a1a1a; border-radius:12px;
+    padding:16px 14px; position:relative; overflow:hidden;
+  }
+  .card .top { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .card .top .icon { font-size:15px; width:20px; text-align:center; }
+  .card .top .label { font-size:9px; color:#555; text-transform:uppercase; letter-spacing:1.2px; font-weight:500; }
+  .card .number { font-size:32px; font-weight:800; letter-spacing:-1px; line-height:1; margin-bottom:2px; }
+  .card .number .unit { font-size:13px; font-weight:400; color:#555; letter-spacing:0; }
+  .card .sub { font-size:10px; color:#444; margin-top:2px; }
+
+  /* ── Barre progression ── */
+  .bar-wrap { height:3px; background:#181818; border-radius:2px; margin-top:10px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:2px; background:#fff; width:0%; transition:width 1.2s cubic-bezier(0.4,0,0.2,1); }
+
+  /* ── Pipeline ── */
+  .pipe-row { display:flex; gap:4px; margin-top:8px; flex-wrap:wrap; }
+  .pipe-item { flex:1; min-width:30px; text-align:center; background:#111; border-radius:4px; padding:4px 2px; }
+  .pipe-item .p-num { font-size:13px; font-weight:700; }
+  .pipe-item .p-lbl { font-size:6px; color:#444; text-transform:uppercase; letter-spacing:0.3px; margin-top:1px; }
+
+  /* ── Actions ── */
+  .action-item { display:flex; align-items:center; gap:6px; padding:5px 0; border-bottom:1px solid #141414; font-size:10px; }
+  .action-item:last-child { border-bottom:none; }
+  .action-item .dot { width:4px; height:4px; border-radius:50%; flex-shrink:0; }
+  .action-item .dot.urgent { background:#ef4444; }
+  .action-item .dot.normal { background:#fff; }
+  .action-item .dot.done { background:#22c55e; }
+  .action-item .name { color:#ccc; flex:1; }
+  .action-item .tag { font-size:7px; padding:1px 4px; border-radius:2px; text-transform:uppercase; letter-spacing:0.3px; }
+  .action-item .tag.do { background:#fff; color:#000; }
+  .action-item .tag.wait { border:1px solid #333; color:#555; }
+
+  /* ── Veille ── */
+  .veille-item { display:flex; gap:8px; padding:6px 0; border-bottom:1px solid #141414; }
+  .veille-item:last-child { border-bottom:none; }
+  .veille-item .v-icon { font-size:12px; width:16px; flex-shrink:0; }
+  .veille-item .v-content { flex:1; min-width:0; }
+  .veille-item .v-company { font-size:10px; font-weight:600; }
+  .veille-item .v-title { font-size:9px; color:#888; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .veille-item .v-meta { font-size:8px; color:#444; margin-top:2px; }
+  .veille-item .v-badge { font-size:7px; padding:1px 4px; border-radius:2px; flex-shrink:0; align-self:flex-start; }
+  .veille-item .v-badge.new { background:#fff; color:#000; }
+  .veille-item .v-badge.old { border:1px solid #222; color:#444; }
+
+  /* ── Animations ── */
+  .card .number.anim { animation: fadeUp 0.6s ease-out; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ── Responsive ── */
+  @media (max-width:640px) { .grid { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:400px) { .grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
-<div class="grid">
-  <div class="ilot" id="ilot1">
-    <div class="icon">🎯</div>
-    <div class="label">Objectif</div>
-    <div class="value anim" id="val1">0</div>
-    <div class="sub">/ 2 Discovery Meetings</div>
-    <div class="bar"><div class="fill" id="bar1"></div></div>
-  </div>
-  <div class="ilot" id="ilot2">
-    <div class="icon">⚡</div>
-    <div class="label">Aujourd'hui</div>
-    <div class="value anim" id="val2">0</div>
-    <div class="sub">actions à faire</div>
-  </div>
-  <div class="ilot" id="ilot3">
-    <div class="icon">📰</div>
-    <div class="label">Veille</div>
-    <div class="value anim" id="val3">0</div>
-    <div class="sub">nouvelles opportunités</div>
-  </div>
-  <div class="ilot" id="ilot4">
-    <div class="icon">📊</div>
-    <div class="label">Pipeline</div>
-    <div class="value anim" id="val4">0</div>
-    <div class="sub">cibles en cours</div>
-  </div>
+<div class="grid" id="app">
+  <!-- Généré par JS -->
 </div>
 
 <script>
-// ── Données fictives animées ──
-const data = {
-  objectif: { current: 0, target: 1 },
-  actions: { current: 0, target: 3 },
-  veille: { current: 0, target: 4 },
-  pipeline: { current: 0, target: 12 },
+// ── Données ──
+const DATA = {
+  objectif: { fait: 0, total: 2, label: "Discovery Meetings" },
+  actions: [
+    { name: "TotalEnergies", task: "Qualification décideur", urgent: true },
+    { name: "Saint-Gobain", task: "Envoi email", urgent: false },
+    { name: "Danone", task: "Relance N+2", urgent: true },
+  ],
+  veille: [
+    { icon: "🏭", company: "TotalEnergies", title: "Plan investissement 5 Md€ bas-carbone", new: true },
+    { icon: "🏗️", company: "Vinci", title: "Contrat quartier d'affaires Lyon", new: true },
+    { icon: "⚡", company: "Schneider", title: "Nouveau Directeur Marketing Global", new: false },
+  ],
+  pipeline: [
+    { label: "À qualifier", count: 5 },
+    { label: "Prêt", count: 4 },
+    { label: "Contact", count: 3 },
+    { label: "R1", count: 2 },
+    { label: "R2", count: 1 },
+    { label: "Réponse", count: 1 },
+    { label: "DM", count: 0 },
+    { label: "Perdu", count: 1 },
+  ]
 };
 
-function animateValue(el, start, end, duration) {
-  const range = end - start;
-  const startTime = performance.now();
-  function step(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = Math.round(start + range * eased);
-    el.textContent = current;
-    if (progress < 1) requestAnimationFrame(step);
+// ── Helpers ──
+function animNumber(el, target, duration = 800) {
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(target * eased);
+    if (p < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
 
-// Animer la barre de progression
-function animateBar(el, pct) {
-  setTimeout(() => { el.style.width = pct + '%'; }, 300);
-}
+// ── Build ──
+const app = document.getElementById('app');
 
-// Lancer les animations au chargement
+// 1. Objectif
+const card1 = document.createElement('div');
+card1.className = 'card';
+card1.innerHTML = `
+  <div class="top"><span class="icon">🎯</span><span class="label">Objectif</span></div>
+  <div class="number anim"><span id="objNum">0</span><span class="unit">/${DATA.objectif.total}</span></div>
+  <div class="sub">${DATA.objectif.label}</div>
+  <div class="bar-wrap"><div class="bar-fill" id="objBar"></div></div>
+`;
+app.appendChild(card1);
+
+// 2. Actions
+const card2 = document.createElement('div');
+card2.className = 'card';
+let actionsHtml = '';
+DATA.actions.forEach(a => {
+  actionsHtml += `<div class="action-item">
+    <div class="dot ${a.urgent ? 'urgent' : 'normal'}"></div>
+    <span class="name">${a.name}</span>
+    <span class="tag ${a.urgent ? 'do' : 'wait'}">${a.urgent ? 'À faire' : 'Prévu'}</span>
+  </div>`;
+});
+card2.innerHTML = `
+  <div class="top"><span class="icon">⚡</span><span class="label">Aujourd'hui</span></div>
+  ${actionsHtml}
+`;
+app.appendChild(card2);
+
+// 3. Veille
+const card3 = document.createElement('div');
+card3.className = 'card';
+let veilleHtml = '';
+DATA.veille.forEach(v => {
+  veilleHtml += `<div class="veille-item">
+    <div class="v-icon">${v.icon}</div>
+    <div class="v-content">
+      <div class="v-company">${v.company}</div>
+      <div class="v-title">${v.title}</div>
+    </div>
+    <div class="v-badge ${v.new ? 'new' : 'old'}">${v.new ? 'Nouveau' : 'Vu'}</div>
+  </div>`;
+});
+card3.innerHTML = `
+  <div class="top"><span class="icon">📰</span><span class="label">Veille</span></div>
+  ${veilleHtml}
+`;
+app.appendChild(card3);
+
+// 4. Pipeline
+const card4 = document.createElement('div');
+card4.className = 'card';
+let pipeHtml = '';
+DATA.pipeline.forEach(p => {
+  pipeHtml += `<div class="pipe-item">
+    <div class="p-num">${p.count}</div>
+    <div class="p-lbl">${p.label}</div>
+  </div>`;
+});
+card4.innerHTML = `
+  <div class="top"><span class="icon">📊</span><span class="label">Pipeline</span></div>
+  <div class="number anim" id="pipeTotal">${DATA.pipeline.reduce((s,p) => s + p.count, 0)}</div>
+  <div class="sub">cibles totales</div>
+  <div class="pipe-row">${pipeHtml}</div>
+`;
+app.appendChild(card4);
+
+// ── Animer ──
 setTimeout(() => {
-  animateValue(document.getElementById('val1'), data.objectif.current, data.objectif.target, 1200);
-  animateValue(document.getElementById('val2'), data.actions.current, data.actions.target, 1000);
-  animateValue(document.getElementById('val3'), data.veille.current, data.veille.target, 900);
-  animateValue(document.getElementById('val4'), data.pipeline.current, data.pipeline.target, 1100);
-  animateBar(document.getElementById('bar1'), (data.objectif.target / 2) * 100);
+  animNumber(document.getElementById('objNum'), DATA.objectif.fait);
+  document.getElementById('objBar').style.width = (DATA.objectif.fait / DATA.objectif.total * 100) + '%';
 }, 200);
 </script>
 </body>
