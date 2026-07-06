@@ -1,0 +1,25 @@
+{
+  "updated_at": "06/07/2026 06:54",
+  "day_name": "Dimanche",
+  "date_str": "6 Juillet 2026",
+  "current_day": 3,
+  "rdv_done": 0,
+  "total_dm": 2,
+  "pct": 0,
+  "prospects_count": 0,
+  "actions_count": 0,
+  "actualites_count": 0,
+  "pipeline": {
+    "aQualifier": 0,
+    "pretAContacter": 0,
+    "premierContact": 0,
+    "relance1": 0,
+    "relance2": 0,
+    "reponse": 0,
+    "discovery": 0,
+    "perdu": 0
+  },
+  "actions": [],
+  "veille": [],
+  "prospects": []
+}

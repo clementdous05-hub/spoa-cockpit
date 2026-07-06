@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPO Cockpit</title>
+<title>SPOA Cockpit</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -14,26 +14,18 @@
   }
   html, body { font-family:'Inter',sans-serif; background:#0a0a0a !important; color:var(--text); min-height:100vh; padding:20px; margin:0; }
   .container { max-width:1100px; margin:0 auto; background:transparent !important; }
-
-  /* ── Notion links ── */
   .notion-link { display:block; text-decoration:none; color:inherit; }
   .notion-link:hover .objectif,
   .notion-link:hover .timeline,
   .notion-link:hover .actions,
   .notion-link:hover .veille,
   .notion-link:hover .pipeline { background:var(--surface2); }
-
-  /* ── Header ── */
   .header { display:flex; justify-content:space-between; align-items:center; padding:12px 0; margin-bottom:24px; border-bottom:1px solid var(--border); }
   .header h1 { font-size:18px; font-weight:700; letter-spacing:-0.3px; }
   .header h1 span { color:var(--text2); font-weight:400; }
   .header .meta { font-size:11px; color:var(--text2); text-align:right; }
   .header .meta .day { font-size:13px; color:var(--text); font-weight:500; }
-
-  /* ── Section titles ── */
   .section-title { font-size:11px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px; }
-
-  /* ── 1. Objectif ── */
   .objectif { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; display:flex; align-items:center; gap:24px; }
   .objectif .left { flex-shrink:0; }
   .objectif .left .big { font-size:36px; font-weight:800; letter-spacing:-1px; }
@@ -46,8 +38,6 @@
   .objectif .bar { height:4px; background:var(--surface2); border-radius:2px; overflow:hidden; }
   .objectif .bar .fill { height:100%; border-radius:2px; background:var(--green); transition:width 0.8s ease; }
   .objectif .bar .pct { font-size:10px; color:var(--text2); margin-top:4px; }
-
-  /* ── 2. Road to 2 DM ── */
   .timeline { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
   .timeline-grid { display:flex; gap:0; position:relative; padding-top:8px; }
   .timeline-grid::before { content:''; position:absolute; top:28px; left:0; right:0; height:1px; background:var(--border); }
@@ -57,11 +47,6 @@
   .tl-day .dot.today { background:var(--blue); box-shadow:0 0 0 3px rgba(59,130,246,0.2); }
   .tl-day .num { font-size:10px; color:var(--text2); }
   .tl-day .label { font-size:8px; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }
-  .tl-day .count { font-size:10px; font-weight:600; color:var(--text); margin-top:4px; }
-  .tl-day .count .over { color:var(--red); }
-  .tl-day .count .ok { color:var(--green); }
-
-  /* ── 3. Actions aujourd'hui ── */
   .actions { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
   .actions-empty { text-align:center; padding:24px; color:var(--text2); font-size:13px; }
   .actions-empty .icon { font-size:24px; margin-bottom:8px; }
@@ -75,8 +60,6 @@
   .tag.contact { background:#1a1a2e; color:var(--blue); }
   .tag.relance { background:#1e1a0e; color:var(--yellow); }
   .tag.retard { background:#1e0e0e; color:var(--red); }
-
-  /* ── 4. Veille ── */
   .veille { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
   .veille-item { display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
   .veille-item:last-child { border-bottom:none; }
@@ -84,25 +67,20 @@
   .veille-item .content { flex:1; }
   .veille-item .content .company { font-size:13px; font-weight:600; }
   .veille-item .content .title { font-size:12px; color:var(--text); margin-top:1px; }
-  .veille-item .content .summary { font-size:11px; color:var(--text2); margin-top:3px; line-height:1.4; }
   .veille-item .content .meta { font-size:10px; color:var(--text2); margin-top:4px; display:flex; gap:8px; flex-wrap:wrap; }
   .veille-item .content .meta a { color:var(--blue); text-decoration:none; }
   .veille-item .content .meta a:hover { text-decoration:underline; }
   .veille-item .status { font-size:9px; padding:2px 6px; border-radius:3px; flex-shrink:0; align-self:flex-start; }
   .status.exploite { background:#0e1e0e; color:var(--green); }
   .status.nouveau { background:#1e1a0e; color:var(--yellow); }
-
-  /* ── 5. Pipeline ── */
   .pipeline { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
   .pipe-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
   .pipe-stage { text-align:center; padding:12px; background:var(--surface2); border-radius:6px; }
   .pipe-stage .lbl { font-size:9px; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; }
   .pipe-stage .cnt { font-size:22px; font-weight:800; margin:4px 0; }
   .pipe-stage .sub { font-size:9px; color:var(--text2); }
-
-  /* ── Footer ── */
   .footer { text-align:center; padding:16px 0; border-top:1px solid var(--border); font-size:10px; color:var(--text2); }
-
+  .loading { text-align:center; padding:40px; color:var(--text2); font-size:14px; }
   @media (max-width:768px) {
     .objectif { flex-direction:column; gap:12px; }
     .pipe-grid { grid-template-columns:repeat(2,1fr); }
@@ -111,295 +89,148 @@
 </style>
 </head>
 <body>
-<div class="container">
-
-  <!-- Header -->
-  <div class="header">
-    <h1>🎯 SPOA <span>Cockpit</span></h1>
-    <div class="meta">
-      <div class="day" id="dayName"></div>
-      <div id="todayDate"></div>
-    </div>
-  </div>
-
-  <!-- 1. Objectif -->
-  <a href="https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458" target="_blank" rel="noopener" class="notion-link">
-  <div class="objectif">
-    <div class="left">
-      <div class="big"><span class="done" id="rdvDone">0</span><span class="total">/2</span></div>
-      <div class="label">Discovery Meetings</div>
-    </div>
-    <div class="right">
-      <div class="title">🎯 Objectif de la mission</div>
-      <div class="sub">2 Discovery Meetings en 15 jours · Brief Orel</div>
-      <div class="bar"><div class="fill" id="progressBar" style="width:0%"></div></div>
-      <div class="pct" id="progressPct">0% atteint</div>
-    </div>
-  </div>
-  </a>
-
-  <!-- 2. Road to 2 DM -->
-  <a href="https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458" target="_blank" rel="noopener" class="notion-link">
-  <div class="timeline">
-    <div class="section-title">📅 Road to 2 Discovery Meetings</div>
-    <div class="timeline-grid" id="timelineGrid">
-      <!-- Generated by JS -->
-    </div>
-  </div>
-  </a>
-
-  <!-- 3. Actions aujourd'hui -->
-  <a href="https://app.notion.com/p/2257b79ba8e54f40a1343c8465308e59" target="_blank" rel="noopener" class="notion-link">
-  <div class="actions">
-    <div class="section-title">⚡ Mes actions aujourd'hui</div>
-    <div id="actionsList">
-      <div class="actions-empty">
-        <div class="icon">✅</div>
-        <div>Aucune action prévue aujourd'hui</div>
-      </div>
-    </div>
-  </div>
-  </a>
-
-  <!-- 4. Veille -->
-  <a href="https://app.notion.com/p/SPO-Prospect-Tracker-3940915405aa813299e6d66e57cdb832" target="_blank" rel="noopener" class="notion-link">
-  <div class="veille">
-    <div class="section-title">📰 Veille — Nouvelles opportunités</div>
-    <div id="veilleList">
-      <div class="actions-empty">
-        <div class="icon">📡</div>
-        <div>Aucune actualité détectée</div>
-      </div>
-    </div>
-  </div>
-  </a>
-
-  <!-- 5. Pipeline -->
-  <a href="https://app.notion.com/p/2257b79ba8e54f40a1343c8465308e59" target="_blank" rel="noopener" class="notion-link">
-  <div class="pipeline">
-    <div class="section-title">📊 Pipeline</div>
-    <div class="pipe-grid" id="pipelineGrid">
-      <div class="pipe-stage"><div class="lbl">À qualifier</div><div class="cnt">0</div><div class="sub">cibles</div></div>
-      <div class="pipe-stage"><div class="lbl">Prêt à contacter</div><div class="cnt">0</div><div class="sub">cibles</div></div>
-      <div class="pipe-stage"><div class="lbl">1er contact</div><div class="cnt">0</div><div class="sub">envoyé</div></div>
-      <div class="pipe-stage"><div class="lbl">Relance 1</div><div class="cnt">0</div><div class="sub">cibles</div></div>
-      <div class="pipe-stage"><div class="lbl">Relance 2</div><div class="cnt">0</div><div class="sub">cibles</div></div>
-      <div class="pipe-stage"><div class="lbl">Réponse</div><div class="cnt">0</div><div class="sub">reçue</div></div>
-      <div class="pipe-stage"><div class="lbl">Discovery</div><div class="cnt">0</div><div class="sub">meeting</div></div>
-      <div class="pipe-stage"><div class="lbl">Perdu</div><div class="cnt">0</div><div class="sub">cibles</div></div>
-    </div>
-  </div>
-  </a>
-
-  <div class="footer">SPOA Cockpit · Données live depuis Notion · Mis à jour en continu</div>
-
+<div class="container" id="app">
+  <div class="loading">🔄 Chargement des données...</div>
 </div>
 
 <script>
-// ── Données fictives pour test ──
-const MOCK_DATA = {
-  rdvDone: 0,
-  prospects: [
-    { company: 'Air Liquide', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Alstom', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Arkema', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Bouygues', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Danone', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Dassault Aviation', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Eiffage', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Lactalis', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Legrand', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Michelin', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Nexans', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Saint-Gobain', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Schneider Electric', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Spie', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'TotalEnergies', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Veolia', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Verallia', task: 'Identifier décideur com', tag: 'contact', date: 'J3' },
-    { company: 'Vinci', task: 'Identifier décideur com', tag: 'contact', date: 'J3' }
-  ],
-  veille: [
-    {
-      source: '⚡',
-      company: 'TotalEnergies',
-      title: 'Bénéfices T1 2026 à 5,4 Md$ + rapport Sustainability & Climate 2026',
-      summary: "Raison d'agir : concilier résultats pétroliers records et crédibilité transition bas-carbone face aux ONG et investisseurs ESG.",
-      date: '06/07/2026',
-      sourceName: 'Notes Notion',
-      link: 'https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458',
-      status: 'nouveau'
-    },
-    {
-      source: '🏭',
-      company: 'Schneider Electric',
-      title: 'Rachat de Cognite pour 3 Md$ et CA record de 40 Md€',
-      summary: "Raison d'agir : pivot fabricant électrique → leader IA industrielle, avec besoin de marque employeur et communication corporate repensées.",
-      date: '06/07/2026',
-      sourceName: 'Notes Notion',
-      link: 'https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458',
-      status: 'nouveau'
-    },
-    {
-      source: '🏭',
-      company: 'Alstom',
-      title: 'TGV-M en service juillet 2026 + bénéfice net doublé',
-      summary: "Raison d'agir : fenêtre narrative unique pour incarner le renouveau industriel français et rassurer les investisseurs.",
-      date: '06/07/2026',
-      sourceName: 'Notes Notion',
-      link: 'https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458',
-      status: 'nouveau'
-    },
-    {
-      source: '🏗️',
-      company: 'Vinci',
-      title: 'Commandes en hausse au T1 2026 malgré un bénéfice net 2025 affecté',
-      summary: "Raison d'agir : renforcer le récit corporate autour de l'infrastructure durable et de la transition des mobilités.",
-      date: '06/07/2026',
-      sourceName: 'Notes Notion',
-      link: 'https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458',
-      status: 'nouveau'
-    }
-  ],
-  pipeline: {
-    aQualifier: 0,
-    pretAContacter: 18,
-    premierContact: 0,
-    relance1: 0,
-    relance2: 0,
-    reponse: 0,
-    discovery: 0,
-    perdu: 0
-  }
-};
+const DATA_URL = 'https://clementdous05-hub.github.io/spoa-cockpit/data.json';
 
-// ── Date ──
-const days = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
-const months = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-const now = new Date();
-document.getElementById('dayName').textContent = days[now.getDay()];
-document.getElementById('todayDate').textContent = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
-
-// ── 1. Objectif ──
-document.getElementById('rdvDone').textContent = MOCK_DATA.rdvDone;
-const pct = (MOCK_DATA.rdvDone / 2) * 100;
-document.getElementById('progressBar').style.width = pct + '%';
-document.getElementById('progressPct').textContent = pct + '% atteint';
-
-// ── 2. Timeline ──
 const phases = [
-  { label: 'J1', name: 'Lancement' },
-  { label: 'J2', name: 'ID décideurs' },
-  { label: 'J3', name: 'ID décideurs' },
-  { label: 'J4', name: 'Envoi emails' },
-  { label: 'J5', name: 'Envoi emails' },
-  { label: 'J6', name: 'Envoi emails' },
-  { label: 'J7', name: 'Envoi emails' },
-  { label: 'J8', name: 'Relance' },
-  { label: 'J9', name: 'Relance' },
-  { label: 'J10', name: 'Relance' },
-  { label: 'J11', name: 'Relance J+14' },
-  { label: 'J12', name: 'Relance J+14' },
-  { label: 'J13', name: 'Relance J+14' },
-  { label: 'J14', name: 'Bilan' },
-  { label: 'J15', name: 'Objectif' },
+  {label:'J1',name:'Lancement'},{label:'J2',name:'ID décideurs'},{label:'J3',name:'ID décideurs'},
+  {label:'J4',name:'Envoi emails'},{label:'J5',name:'Envoi emails'},{label:'J6',name:'Envoi emails'},
+  {label:'J7',name:'Envoi emails'},{label:'J8',name:'Relance'},{label:'J9',name:'Relance'},
+  {label:'J10',name:'Relance'},{label:'J11',name:'Relance J+14'},{label:'J12',name:'Relance J+14'},
+  {label:'J13',name:'Relance J+14'},{label:'J14',name:'Bilan'},{label:'J15',name:'Objectif'},
 ];
 
-const grid = document.getElementById('timelineGrid');
-const missionStart = new Date(2026, 6, 4);
-const dayDiff = Math.floor((now - missionStart) / (1000*60*60*24));
-const currentDay = Math.min(Math.max(dayDiff + 1, 1), 15);
+const stageLabels = [
+  {lbl:'À qualifier',key:'aQualifier',sub:'cibles'},
+  {lbl:'Prêt à contacter',key:'pretAContacter',sub:'cibles'},
+  {lbl:'1er contact',key:'premierContact',sub:'envoyé'},
+  {lbl:'Relance 1',key:'relance1',sub:'cibles'},
+  {lbl:'Relance 2',key:'relance2',sub:'cibles'},
+  {lbl:'Réponse',key:'reponse',sub:'reçue'},
+  {lbl:'Discovery',key:'discovery',sub:'meeting'},
+  {lbl:'Perdu',key:'perdu',sub:'cibles'},
+];
 
-phases.forEach((p, i) => {
-  const day = document.createElement('div');
-  day.className = 'tl-day';
-  const dot = document.createElement('div');
-  dot.className = 'dot' + (i+1 <= currentDay ? ' active' : '') + (i+1 === currentDay ? ' today' : '');
-  day.appendChild(dot);
-  const num = document.createElement('div');
-  num.className = 'num';
-  num.textContent = p.label;
-  day.appendChild(num);
-  const label = document.createElement('div');
-  label.className = 'label';
-  label.textContent = p.name;
-  day.appendChild(label);
-  const count = document.createElement('div');
-  count.className = 'count';
-  // Count prospects for this day
-  const dayProspects = MOCK_DATA.prospects.filter(pr => pr.date === p.label);
-  if (dayProspects.length > 0) {
-    count.innerHTML = dayProspects.map(pr => pr.company).join('<br>');
-    count.style.fontSize = '8px';
-    count.style.lineHeight = '1.3';
-    count.style.color = '#aaa';
+function tagClass(statut) {
+  if (statut === 'Prêt à contacter' || statut === '1er contact envoyé') return 'contact';
+  if (statut === 'Relance N+1') return 'relance';
+  if (statut === 'Relance N+2') return 'retard';
+  return 'contact';
+}
+
+function tagLabel(tag) {
+  return {contact:'À faire',relance:'Relance',retard:'En retard'}[tag] || 'À faire';
+}
+
+function render(data) {
+  const p = data.pipeline;
+  const app = document.getElementById('app');
+
+  // Timeline
+  let timelineHtml = '';
+  phases.forEach((ph, i) => {
+    const dotClass = 'dot' + (i+1 <= data.current_day ? ' active' : '') + (i+1 === data.current_day ? ' today' : '');
+    timelineHtml += `<div class="tl-day"><div class="${dotClass}"></div><div class="num">${ph.label}</div><div class="label">${ph.name}</div></div>`;
+  });
+
+  // Actions
+  let actionsHtml = '';
+  if (data.actions.length > 0) {
+    data.actions.forEach(a => {
+      const tag = tagClass(a.tag);
+      actionsHtml += `<div class="action-item"><div class="check"></div><div class="info"><div class="company">${a.company}</div><div class="task">${a.task}</div></div><div class="tag ${tag}">${tagLabel(tag)}</div></div>`;
+    });
   } else {
-    count.textContent = '';
+    actionsHtml = '<div class="actions-empty"><div class="icon">✅</div><div>Aucune action prévue aujourd\'hui</div></div>';
   }
-  day.appendChild(count);
-  grid.appendChild(day);
-});
 
-// ── 3. Actions aujourd'hui ──
-const actionsList = document.getElementById('actionsList');
-actionsList.innerHTML = '';
-MOCK_DATA.prospects.forEach(pr => {
-  const item = document.createElement('div');
-  item.className = 'action-item';
-  item.innerHTML = `
-    <div class="check"></div>
-    <div class="info">
-      <div class="company">${pr.company}</div>
-      <div class="task">${pr.task}</div>
-    </div>
-    <div class="tag ${pr.tag}">${pr.tag === 'contact' ? 'À faire' : pr.tag === 'relance' ? 'Relance' : 'En retard'}</div>
-  `;
-  actionsList.appendChild(item);
-});
+  // Veille
+  let veilleHtml = '';
+  if (data.veille.length > 0) {
+    data.veille.forEach(v => {
+      const linkHtml = v.link ? `<a href="${v.link}" target="_blank">🔗 Lire article</a>` : '';
+      veilleHtml += `<div class="veille-item"><div class="source">${v.source}</div><div class="content"><div class="company">${v.company}</div><div class="title">${v.title}</div><div class="meta"><span>🏷️ ${v.sourceName}</span>${linkHtml}</div></div><div class="status nouveau">Nouveau</div></div>`;
+    });
+  } else {
+    veilleHtml = '<div class="actions-empty"><div class="icon">📡</div><div>Aucune actualité détectée</div></div>';
+  }
 
-// ── 4. Veille ──
-const veilleList = document.getElementById('veilleList');
-veilleList.innerHTML = '';
-MOCK_DATA.veille.forEach(v => {
-  const item = document.createElement('div');
-  item.className = 'veille-item';
-  item.innerHTML = `
-    <div class="source">${v.source}</div>
-    <div class="content">
-      <div class="company">${v.company}</div>
-      <div class="title">${v.title}</div>
-      <div class="summary">${v.summary}</div>
+  // Pipeline
+  let pipelineHtml = '';
+  stageLabels.forEach(s => {
+    pipelineHtml += `<div class="pipe-stage"><div class="lbl">${s.lbl}</div><div class="cnt">${p[s.key]}</div><div class="sub">${s.sub}</div></div>`;
+  });
+
+  app.innerHTML = `
+    <div class="header">
+      <h1>🎯 SPOA <span>Cockpit</span></h1>
       <div class="meta">
-        <span>📅 ${v.date}</span>
-        <span>🏷️ ${v.sourceName}</span>
-        <a href="${v.link}" target="_blank">🔗 Lire l'article</a>
+        <div class="day">${data.day_name}</div>
+        <div>${data.date_str}</div>
       </div>
     </div>
-    <div class="status ${v.status}">${v.status === 'nouveau' ? 'Nouveau' : 'Exploité'}</div>
+    <a href="https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458" target="_blank" rel="noopener" class="notion-link">
+    <div class="objectif">
+      <div class="left">
+        <div class="big"><span class="done">${data.rdv_done}</span><span class="total">/${data.total_dm}</span></div>
+        <div class="label">Discovery Meetings</div>
+      </div>
+      <div class="right">
+        <div class="title">🎯 Objectif de la mission</div>
+        <div class="sub">2 Discovery Meetings en 15 jours · Brief Orel</div>
+        <div class="bar"><div class="fill" style="width:${data.pct}%"></div></div>
+        <div class="pct">${data.pct}% atteint</div>
+      </div>
+    </div>
+    </a>
+    <a href="https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458" target="_blank" rel="noopener" class="notion-link">
+    <div class="timeline">
+      <div class="section-title">📅 Road to 2 Discovery Meetings — Jour ${data.current_day}/15</div>
+      <div class="timeline-grid">${timelineHtml}</div>
+    </div>
+    </a>
+    <a href="https://app.notion.com/p/2257b79ba8e54f40a1343c8465308e59" target="_blank" rel="noopener" class="notion-link">
+    <div class="actions">
+      <div class="section-title">⚡ Mes actions aujourd\'hui (${data.actions_count})</div>
+      ${actionsHtml}
+    </div>
+    </a>
+    <a href="https://app.notion.com/p/SPO-Prospect-Tracker-3940915405aa813299e6d66e57cdb832" target="_blank" rel="noopener" class="notion-link">
+    <div class="veille">
+      <div class="section-title">📰 Veille — Nouvelles opportunités (${data.actualites_count})</div>
+      ${veilleHtml}
+    </div>
+    </a>
+    <a href="https://app.notion.com/p/2257b79ba8e54f40a1343c8465308e59" target="_blank" rel="noopener" class="notion-link">
+    <div class="pipeline">
+      <div class="section-title">📊 Pipeline — ${data.prospects_count} cibles</div>
+      <div class="pipe-grid">${pipelineHtml}</div>
+    </div>
+    </a>
+    <div class="footer">SPOA Cockpit · Dernière mise à jour : ${data.updated_at} · Données live depuis Notion</div>
   `;
-  veilleList.appendChild(item);
-});
+}
 
-// ── 5. Pipeline ──
-const p = MOCK_DATA.pipeline;
-const stages = [
-  { lbl: 'À qualifier', cnt: p.aQualifier, sub: 'cibles' },
-  { lbl: 'Prêt à contacter', cnt: p.pretAContacter, sub: 'cibles' },
-  { lbl: '1er contact', cnt: p.premierContact, sub: 'envoyé' },
-  { lbl: 'Relance 1', cnt: p.relance1, sub: 'cibles' },
-  { lbl: 'Relance 2', cnt: p.relance2, sub: 'cibles' },
-  { lbl: 'Réponse', cnt: p.reponse, sub: 'reçue' },
-  { lbl: 'Discovery', cnt: p.discovery, sub: 'meeting' },
-  { lbl: 'Perdu', cnt: p.perdu, sub: 'cibles' },
-];
-const pipeGrid = document.getElementById('pipelineGrid');
-pipeGrid.innerHTML = '';
-stages.forEach(s => {
-  const stage = document.createElement('div');
-  stage.className = 'pipe-stage';
-  stage.innerHTML = `<div class="lbl">${s.lbl}</div><div class="cnt">${s.cnt}</div><div class="sub">${s.sub}</div>`;
-  pipeGrid.appendChild(stage);
-});
+// ── Fetch data.json et render ──
+fetch(DATA_URL)
+  .then(r => r.json())
+  .then(data => render(data))
+  .catch(err => {
+    document.getElementById('app').innerHTML = '<div class="loading">❌ Erreur de chargement des données</div>';
+    console.error('Fetch error:', err);
+  });
+
+// Re-fetch toutes les 5 minutes
+setInterval(() => {
+  fetch(DATA_URL + '?_=' + Date.now())
+    .then(r => r.json())
+    .then(data => render(data))
+    .catch(() => {});
+}, 5 * 60 * 1000);
 </script>
 </body>
 </html>
