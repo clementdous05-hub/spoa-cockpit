@@ -224,13 +224,13 @@ fetch(DATA_URL)
     console.error('Fetch error:', err);
   });
 
-// Re-fetch toutes les 5 minutes
+// Re-fetch toutes les 15 secondes pour le temps réel
 setInterval(() => {
   fetch(DATA_URL + '?_=' + Date.now())
     .then(r => r.json())
     .then(data => render(data))
     .catch(() => {});
-}, 5 * 60 * 1000);
+}, 15 * 1000);
 </script>
 </body>
 </html>
