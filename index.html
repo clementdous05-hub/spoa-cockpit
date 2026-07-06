@@ -39,14 +39,13 @@
   .objectif .bar .fill { height:100%; border-radius:2px; background:var(--green); transition:width 0.8s ease; }
   .objectif .bar .pct { font-size:10px; color:var(--text2); margin-top:4px; }
   .timeline { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
-  .timeline-grid { display:flex; gap:0; position:relative; padding-top:8px; }
-  .timeline-grid::before { content:''; position:absolute; top:28px; left:0; right:0; height:1px; background:var(--border); }
-  .tl-day { flex:1; text-align:center; position:relative; padding-top:16px; }
-  .tl-day .dot { width:8px; height:8px; border-radius:50%; background:var(--surface2); margin:0 auto 6px; position:relative; z-index:1; }
-  .tl-day .dot.active { background:var(--accent); }
-  .tl-day .dot.today { background:var(--blue); box-shadow:0 0 0 3px rgba(59,130,246,0.2); }
-  .tl-day .num { font-size:10px; color:var(--text2); }
-  .tl-day .label { font-size:8px; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }
+  .cal-grid { display:grid; grid-template-columns:1fr; gap:4px; }
+  .cal-day { display:flex; align-items:center; gap:12px; padding:8px 12px; border-radius:6px; background:var(--surface2); border-left:2px solid var(--border); }
+  .cal-day.today { border-left-color:var(--blue); background:rgba(59,130,246,0.08); }
+  .cal-day.deadline { border-left-color:var(--red); background:rgba(239,68,68,0.08); }
+  .cal-day.past { opacity:0.6; }
+  .cal-date { font-size:11px; font-weight:600; color:var(--text2); min-width:80px; flex-shrink:0; }
+  .cal-action { font-size:12px; color:var(--text); }
   .actions { background:rgba(17,17,17,0.85); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:20px; }
   .actions-empty { text-align:center; padding:24px; color:var(--text2); font-size:13px; }
   .actions-empty .icon { font-size:24px; margin-bottom:8px; }
@@ -84,7 +83,6 @@
   @media (max-width:768px) {
     .objectif { flex-direction:column; gap:12px; }
     .pipe-grid { grid-template-columns:repeat(2,1fr); }
-    .timeline-grid { overflow-x:auto; }
   }
 </style>
 </head>
@@ -95,14 +93,6 @@
 
 <script>
 const DATA_URL = 'https://clementdous05-hub.github.io/spoa-cockpit/data.json';
-
-const phases = [
-  {label:'J-3',name:'4 juillet'},{label:'J-2',name:'5 juillet'},{label:'J-1',name:'6 juillet'},
-  {label:'J-0',name:'7 juillet — Deadline'},{label:'J+1',name:'8 juillet'},{label:'J+2',name:'9 juillet'},
-  {label:'J+3',name:'10 juillet'},{label:'J+4',name:'11 juillet'},{label:'J+5',name:'12 juillet'},
-  {label:'J+6',name:'13 juillet'},{label:'J+7',name:'14 juillet'},{label:'J+8',name:'15 juillet'},
-  {label:'J+9',name:'16 juillet'},{label:'J+10',name:'17 juillet'},{label:'J+11',name:'18 juillet'},
-];
 
 const stageLabels = [
   {lbl:'À qualifier',key:'aQualifier',sub:'cibles'},
@@ -130,11 +120,15 @@ function render(data) {
   const p = data.pipeline;
   const app = document.getElementById('app');
 
-  // Timeline
-  let timelineHtml = '';
-  phases.forEach((ph, i) => {
-    const dotClass = 'dot' + (i+1 <= data.phase_index ? ' active' : '') + (i+1 === data.phase_index ? ' today' : '');
-    timelineHtml += `<div class="tl-day"><div class="${dotClass}"></div><div class="num">${ph.label}</div><div class="label">${ph.name}</div></div>`;
+  // Calendrier
+  let calendrierHtml = '';
+  data.calendrier.forEach(j => {
+    const cls = 'cal-day' + (j.today ? ' today' : '') + (j.deadline ? ' deadline' : '') + (j.past ? ' past' : '');
+    const checkIcon = j.past ? '✅' : (j.today ? '◻️' : '⬜');
+    calendrierHtml += `<div class="${cls}">
+      <div class="cal-date">${j.date}</div>
+      <div class="cal-action">${checkIcon} ${j.action}</div>
+    </div>`;
   });
 
   // Actions
@@ -189,8 +183,8 @@ function render(data) {
     </a>
     <a href="https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458" target="_blank" rel="noopener" class="notion-link">
     <div class="timeline">
-      <div class="section-title">📅 Compte à rebours — Envoyer la page prospection à Orel avant le 7 juillet</div>
-      <div class="timeline-grid">${timelineHtml}</div>
+      <div class="section-title">📅 Calendrier — 4 au 18 juillet</div>
+      <div class="cal-grid">${calendrierHtml}</div>
     </div>
     </a>
     <a href="https://app.notion.com/p/2257b79ba8e54f40a1343c8465308e59" target="_blank" rel="noopener" class="notion-link">

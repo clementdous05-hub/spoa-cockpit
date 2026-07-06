@@ -1,5 +1,5 @@
 {
-  "updated_at": "06/07/2026 08:15",
+  "updated_at": "06/07/2026 08:16",
   "day_name": "Dimanche",
   "date_str": "6 Juillet 2026",
   "current_day": 3,
@@ -22,6 +22,143 @@
     "discovery": 0,
     "perdu": 0
   },
+  "calendrier": [
+    {
+      "date": "4 juillet",
+      "action": "Brief Orel — Définition des 18 cibles",
+      "deadline": false,
+      "index": 0,
+      "past": true,
+      "today": false,
+      "future": false
+    },
+    {
+      "date": "5 juillet",
+      "action": "Identification des décideurs com",
+      "deadline": false,
+      "index": 1,
+      "past": true,
+      "today": false,
+      "future": false
+    },
+    {
+      "date": "6 juillet",
+      "action": "Identification des décideurs com",
+      "deadline": false,
+      "index": 2,
+      "past": false,
+      "today": true,
+      "future": false
+    },
+    {
+      "date": "7 juillet",
+      "action": "🚨 Envoyer la page prospection à Orel",
+      "deadline": true,
+      "index": 3,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "8 juillet",
+      "action": "Envoi des premiers emails",
+      "deadline": false,
+      "index": 4,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "9 juillet",
+      "action": "Envoi des premiers emails",
+      "deadline": false,
+      "index": 5,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "10 juillet",
+      "action": "Envoi des premiers emails",
+      "deadline": false,
+      "index": 6,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "11 juillet",
+      "action": "Relance N+1",
+      "deadline": false,
+      "index": 7,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "12 juillet",
+      "action": "Relance N+1",
+      "deadline": false,
+      "index": 8,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "13 juillet",
+      "action": "Relance N+1",
+      "deadline": false,
+      "index": 9,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "14 juillet",
+      "action": "Relance N+2",
+      "deadline": false,
+      "index": 10,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "15 juillet",
+      "action": "Relance N+2",
+      "deadline": false,
+      "index": 11,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "16 juillet",
+      "action": "Relance N+2",
+      "deadline": false,
+      "index": 12,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "17 juillet",
+      "action": "Bilan",
+      "deadline": false,
+      "index": 13,
+      "past": false,
+      "today": false,
+      "future": true
+    },
+    {
+      "date": "18 juillet",
+      "action": "Objectif atteint",
+      "deadline": false,
+      "index": 14,
+      "past": false,
+      "today": false,
+      "future": true
+    }
+  ],
   "actions": [
     {
       "company": "Verallia",
