@@ -97,11 +97,11 @@
 const DATA_URL = 'https://clementdous05-hub.github.io/spoa-cockpit/data.json';
 
 const phases = [
-  {label:'J1',name:'Lancement'},{label:'J2',name:'ID décideurs'},{label:'J3',name:'ID décideurs'},
-  {label:'J4',name:'Envoi emails'},{label:'J5',name:'Envoi emails'},{label:'J6',name:'Envoi emails'},
-  {label:'J7',name:'Envoi emails'},{label:'J8',name:'Relance'},{label:'J9',name:'Relance'},
-  {label:'J10',name:'Relance'},{label:'J11',name:'Relance J+14'},{label:'J12',name:'Relance J+14'},
-  {label:'J13',name:'Relance J+14'},{label:'J14',name:'Bilan'},{label:'J15',name:'Objectif'},
+  {label:'J-3',name:'4 juillet'},{label:'J-2',name:'5 juillet'},{label:'J-1',name:'6 juillet'},
+  {label:'J-0',name:'7 juillet — Deadline'},{label:'J+1',name:'8 juillet'},{label:'J+2',name:'9 juillet'},
+  {label:'J+3',name:'10 juillet'},{label:'J+4',name:'11 juillet'},{label:'J+5',name:'12 juillet'},
+  {label:'J+6',name:'13 juillet'},{label:'J+7',name:'14 juillet'},{label:'J+8',name:'15 juillet'},
+  {label:'J+9',name:'16 juillet'},{label:'J+10',name:'17 juillet'},{label:'J+11',name:'18 juillet'},
 ];
 
 const stageLabels = [
@@ -133,7 +133,7 @@ function render(data) {
   // Timeline
   let timelineHtml = '';
   phases.forEach((ph, i) => {
-    const dotClass = 'dot' + (i+1 <= data.current_day ? ' active' : '') + (i+1 === data.current_day ? ' today' : '');
+    const dotClass = 'dot' + (i+1 <= data.phase_index ? ' active' : '') + (i+1 === data.phase_index ? ' today' : '');
     timelineHtml += `<div class="tl-day"><div class="${dotClass}"></div><div class="num">${ph.label}</div><div class="label">${ph.name}</div></div>`;
   });
 
@@ -176,20 +176,20 @@ function render(data) {
     <a href="https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458" target="_blank" rel="noopener" class="notion-link">
     <div class="objectif">
       <div class="left">
-        <div class="big"><span class="done">${data.rdv_done}</span><span class="total">/${data.total_dm}</span></div>
-        <div class="label">Discovery Meetings</div>
+        <div class="big"><span class="done">${data.jours_restants}</span><span class="total">j</span></div>
+        <div class="label">Restants</div>
       </div>
       <div class="right">
-        <div class="title">🎯 Objectif de la mission</div>
-        <div class="sub">2 Discovery Meetings en 15 jours · Brief Orel</div>
-        <div class="bar"><div class="fill" style="width:${data.pct}%"></div></div>
-        <div class="pct">${data.pct}% atteint</div>
+        <div class="title">🎯 Mission : Envoyer la page prospection à Orel</div>
+        <div class="sub">Deadline : 7 juillet 2026 · Brief Orel</div>
+        <div class="bar"><div class="fill" style="width:${data.pct_mission}%"></div></div>
+        <div class="pct">${data.pct_mission}% atteint · ${data.jours_restants} jour(s) restant(s)</div>
       </div>
     </div>
     </a>
     <a href="https://app.notion.com/p/Spoa-Prospection-3920915405aa81a7b4add78573d08458" target="_blank" rel="noopener" class="notion-link">
     <div class="timeline">
-      <div class="section-title">📅 Road to 2 Discovery Meetings — Jour ${data.current_day}/15</div>
+      <div class="section-title">📅 Compte à rebours — Envoyer la page prospection à Orel avant le 7 juillet</div>
       <div class="timeline-grid">${timelineHtml}</div>
     </div>
     </a>

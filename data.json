@@ -1,8 +1,11 @@
 {
-  "updated_at": "06/07/2026 08:09",
+  "updated_at": "06/07/2026 08:11",
   "day_name": "Dimanche",
   "date_str": "6 Juillet 2026",
   "current_day": 3,
+  "phase_index": 2,
+  "jours_restants": 0,
+  "pct_mission": 100,
   "rdv_done": 0,
   "total_dm": 2,
   "pct": 0,
