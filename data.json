@@ -1,5 +1,5 @@
 {
-  "updated_at": "06/07/2026 08:05",
+  "updated_at": "06/07/2026 08:06",
   "day_name": "Dimanche",
   "date_str": "6 Juillet 2026",
   "current_day": 3,
@@ -7,10 +7,10 @@
   "total_dm": 2,
   "pct": 0,
   "prospects_count": 18,
-  "actions_count": 0,
+  "actions_count": 18,
   "actualites_count": 18,
   "pipeline": {
-    "aQualifier": 0,
+    "aQualifier": 18,
     "pretAContacter": 0,
     "premierContact": 0,
     "relance1": 0,
@@ -19,7 +19,98 @@
     "discovery": 0,
     "perdu": 0
   },
-  "actions": [],
+  "actions": [
+    {
+      "company": "Verallia",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Spie",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Nexans",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Legrand",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Dassault Aviation",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Lactalis",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Eiffage",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Arkema",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Alstom",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Danone",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Veolia",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Michelin",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Bouygues",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Vinci",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Saint-Gobain",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Schneider Electric",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "Air Liquide",
+      "task": "Aucune action",
+      "tag": "retard"
+    },
+    {
+      "company": "TotalEnergies",
+      "task": "Aucune action",
+      "tag": "retard"
+    }
+  ],
   "veille": [
     {
       "source": "📰",

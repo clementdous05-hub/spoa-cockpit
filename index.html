@@ -116,7 +116,7 @@ const stageLabels = [
 ];
 
 function tagClass(statut) {
-  if (statut === 'Prêt à contacter' || statut === '1er contact envoyé') return 'contact';
+  if (statut === 'À contacter' || statut === 'Prêt à contacter' || statut === '1er contact envoyé') return 'contact';
   if (statut === 'Relance N+1') return 'relance';
   if (statut === 'Relance N+2') return 'retard';
   return 'contact';
