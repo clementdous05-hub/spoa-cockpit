@@ -1,14 +1,14 @@
 {
-  "updated_at": "06/07/2026 08:03",
+  "updated_at": "06/07/2026 08:05",
   "day_name": "Dimanche",
   "date_str": "6 Juillet 2026",
   "current_day": 3,
   "rdv_done": 0,
   "total_dm": 2,
   "pct": 0,
-  "prospects_count": 0,
+  "prospects_count": 18,
   "actions_count": 0,
-  "actualites_count": 0,
+  "actualites_count": 18,
   "pipeline": {
     "aQualifier": 0,
     "pretAContacter": 0,
@@ -20,6 +20,278 @@
     "perdu": 0
   },
   "actions": [],
-  "veille": [],
-  "prospects": []
+  "veille": [
+    {
+      "source": "📰",
+      "company": "Verallia",
+      "title": "📰 Lance 3 projets de fours hybrides pour décarboner le verre + 360 suppressions de postes\n🎯 Raison : Doit conjuguer investissement vert et restructurations sociales pour préserver sa réputation auprès des clients (cognac, vin, agroalimentaire)",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Spie",
+      "title": "📰 Acquiert le suisse Nimeg AG pour renforcer son pôle sciences de la vie\n🎯 Raison : Doit faire connaître sa diversification des métiers techniques vers les sciences de la vie — repositionnement nécessitant communication corporate ciblée",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Nexans",
+      "title": "📰 Rachète une entreprise américaine pour 680 M€ + cession d'Autoelectric — recentrage câbles haute valeur\n🎯 Raison : Pivot stratégique vers l'électrification et le marché US = récit de transformation industrielle à porter auprès des investisseurs et talents",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Legrand",
+      "title": "📰 Résultats 2025 en hausse (1,2 Md€) mais suppression de 178 postes et fermeture de 4 sites en France\n🎯 Raison : Paradoxe résultats records / restructuration sociale = besoin urgent de communication corporate pour préserver la marque employeur",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Dassault Aviation",
+      "title": "📰 Résultats 2025 dopés par le Rafale, carnet de commandes record, 4e employeur préféré des étudiants\n🎯 Raison : Doit raconter son succès pour recruter massivement (ingénieurs, IA, cyber) et entretenir le soft power du Rafale",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Lactalis",
+      "title": "📰 Ventes +2,9%, résultat courant +10,8% mais doit répercuter l'impact du conflit Moyen-Orient\n🎯 Raison : Doit construire un récit corporate justifiant ses prix tout en valorisant son ancrage territorial et son rôle dans la filière laitière",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Eiffage",
+      "title": "📰 Croissance soutenue 2025 — 1 Md€ résultat net, dividende en hausse\n🎯 Raison : Doit capitaliser sur sa performance pour se différencier et attirer les talents dans un secteur en pénurie de main-d'œuvre",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Arkema",
+      "title": "📰 Bénéfice net chute de 82,2% en 2025 — crise de la chimie européenne\n🎯 Raison : Besoin urgent de communication de crise et marque employeur pour défendre sa stratégie et rassurer clients B2B",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Alstom",
+      "title": "📰 TGV-M en service juillet 2026 + bénéfice net doublé + grand plan de transformation\n🎯 Raison : Fenêtre narrative unique pour incarner le renouveau industriel français et rassurer les investisseurs après des années de turbulences",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Danone",
+      "title": "📰 Résultat net 2025 à 1,83 Md€, bat le consensus T1 2026, confirmé ses objectifs\n🎯 Raison : Doit consolider son positionnement santé-alimentation dans un contexte inflationniste qui interroge le premium",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Veolia",
+      "title": "📰 DG Estelle Brachlianoff élue Industrielle de l'année 2025 + chatbot IA Ask Veolia\n🎯 Raison : Doit capitaliser sur cette reconnaissance pour renforcer son image d'entreprise de solutions écologiques et sa marque employeur",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Michelin",
+      "title": "📰 Recul des ventes 2025 mais rebond attendu 2026 porté par innovation (hydrogène, composites)\n🎯 Raison : Doit restaurer la confiance en racontant sa transformation au-delà du pneumatique vers les matériaux de pointe",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Bouygues",
+      "title": "📰 Bouygues Construction rachète l'américain Vannoy Construction (873 M€ CA) + Bouygues Telecom N°1 internet fixe/mobile\n🎯 Raison : Expansion USA + performance Telecom = besoin d'un récit corporate unifié autour de la transformation des infrastructures",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Vinci",
+      "title": "📰 Bénéfice net 2025 affecté par fiscalité française mais prises de commandes en hausse T1 2026\n🎯 Raison : Doit renforcer son récit corporate autour de l'infrastructure durable et de la transition des mobilités",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Saint-Gobain",
+      "title": "📰 Leader mondial construction durable, vise marge Ebitda >15% en 2026 malgré marché atone\n🎯 Raison : Doit imposer son récit de leader durable pour justifier sa résilience et attirer les talents",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Schneider Electric",
+      "title": "📰 Rachète le norvégien Cognite (IA industrielle) pour 3 Md$ — CA record 40 Md€ en 2025\n🎯 Raison : Pivot stratégique fabricant électrique → leader IA industrielle, besoin de marque employeur et communication corporate repensées",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "Air Liquide",
+      "title": "📰 Construit la plus puissante unité d'hydrogène bas carbone d'Europe en Normandie (démarrage 2026)\n🎯 Raison : Doit capitaliser sur son leadership hydrogène pour asseoir sa légitimité face à la compétition mondiale des technologies vertes",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    },
+    {
+      "source": "📰",
+      "company": "TotalEnergies",
+      "title": "📰 Bénéfices T1 2026 à 5,4 Md$ + rapport Sustainability & Climate 2026\n🎯 Raison : Doit concilier résultats pétroliers records et crédibilité transition bas-carbone face aux ONG et investisseurs ESG",
+      "sourceName": "Non spécifié",
+      "link": "",
+      "status": "nouveau"
+    }
+  ],
+  "prospects": [
+    {
+      "name": "Verallia",
+      "secteur": "Industrie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Spie",
+      "secteur": "Services",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Nexans",
+      "secteur": "Industrie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Legrand",
+      "secteur": "Industrie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Dassault Aviation",
+      "secteur": "Aéronautique",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Lactalis",
+      "secteur": "Agroalimentaire",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Eiffage",
+      "secteur": "Construction",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Arkema",
+      "secteur": "Industrie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Alstom",
+      "secteur": "Industrie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Danone",
+      "secteur": "Agroalimentaire",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Veolia",
+      "secteur": "Énergie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Michelin",
+      "secteur": "Industrie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Bouygues",
+      "secteur": "Construction",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Vinci",
+      "secteur": "Construction",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Saint-Gobain",
+      "secteur": "Industrie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Schneider Electric",
+      "secteur": "Industrie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "Air Liquide",
+      "secteur": "Industrie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    },
+    {
+      "name": "TotalEnergies",
+      "secteur": "Énergie",
+      "statut": "À contacter",
+      "action": "",
+      "score": 0
+    }
+  ]
 }
