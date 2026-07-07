@@ -1,11 +1,11 @@
 {
-  "updated_at": "06/07/2026 23:59",
-  "day_name": "Dimanche",
-  "date_str": "6 Juillet 2026",
-  "current_day": 3,
-  "phase_index": 2,
-  "jours_restants": 1,
-  "pct_mission": 67,
+  "updated_at": "07/07/2026 00:01",
+  "day_name": "Lundi",
+  "date_str": "7 Juillet 2026",
+  "current_day": 4,
+  "phase_index": 3,
+  "jours_restants": 0,
+  "pct_mission": 100,
   "rdv_done": 0,
   "total_dm": 2,
   "pct": 0,
@@ -46,8 +46,8 @@
       "action": "Identification des décideurs com",
       "deadline": false,
       "index": 2,
-      "past": false,
-      "today": true,
+      "past": true,
+      "today": false,
       "future": false
     },
     {
@@ -56,8 +56,8 @@
       "deadline": true,
       "index": 3,
       "past": false,
-      "today": false,
-      "future": true
+      "today": true,
+      "future": false
     }
   ],
   "actions": [],
